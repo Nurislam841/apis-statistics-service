@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package statistics.base.frontend.v1;
+
+import "google/protobuf/timestamp.proto";
+import "base/frontend/v1/order.proto";
+
+option go_package = "github.com/AskatNa/apis-gen-statistics-service/base/frontend/v1;statsbase";
+
+message Statistic {
+  // client id
+  int64 id = 1;
+  // orders count
+  uint64 orders_count = 2;
+  // orders message
+  repeated Order orders = 3;
+  // phone
+  string phone = 4;
+  // created at == registration time for a client
+  google.protobuf.Timestamp created_at = 5;
+  // created at == registration time for a client
+  google.protobuf.Timestamp updated_at = 6;
+  // check client status
+  bool is_deleted = 7;
+}

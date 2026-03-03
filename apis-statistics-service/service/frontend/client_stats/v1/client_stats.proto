@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package statistics.service.frontend.statistic.v1;
+
+import "base/frontend/v1/client_stats.proto";
+
+option go_package = "github.com/AskatNa/apis-gen-statistics-service/service/frontend/client_stats/v1;statssvc";
+
+//------------------------
+// Statistics service:
+//------------------------
+// Format: proto
+// client: frontend (web, native apps)
+// server: statistics-service
+// Access:
+//   gRPC
+//---------------------------------------------------------------------------------
+service ClientStatisticsService {
+  //------------------------
+  // Get: get a client statistics
+  //------------------------
+  rpc Get(GetRequest) returns (GetResponse);
+
+  //------------------------
+  // List: list all statistics
+  //------------------------
+  rpc List(ListRequest) returns (ListResponse);
+}
+
+message CreateRequest {
+  // id
+  uint64 id = 1;
+}
+
+message CreateResponse {
+  // client struct
+  base.frontend.v1.Statistic client = 1;
+}
+
+message GetRequest {
+  // id
+  uint64 id = 1;
+}
+
+message GetResponse {
+  // client struct
+  base.frontend.v1.Statistic client = 1;
+}
+
+message ListRequest {}
+
+message ListResponse {
+  // list of clients statistics
+  repeated base.frontend.v1.Statistic clients = 1;
+}
